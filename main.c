@@ -5,6 +5,8 @@
 int main(int argc, char *argv[])
 {
 	const char *name;
+	char buf[80];
+	int result;
 	if (argc > 1)
 		{
 			name = argv[1];
@@ -13,6 +15,11 @@ int main(int argc, char *argv[])
 		{
 			name = "World";
 		}
-	greet(stdout, name);
+	result = greet(buf, sizeof(buf), name);
+	if (result >= sizeof(buf))
+		{
+			return EXIT_FAILURE;
+		}
+	fputs(buf, stdout);
 	return EXIT_SUCCESS;
 }
