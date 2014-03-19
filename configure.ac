@@ -6,6 +6,7 @@ AC_INIT([hello-world], [0.0], [zunda at gmail.com])
 AM_INIT_AUTOMAKE([1.14 foreign])
 AC_CONFIG_SRCDIR([hello.c])
 AC_CONFIG_HEADERS([config.h])
+AM_PROG_LIBTOOL
 
 # Checks for programs.
 AC_PROG_CC
@@ -19,5 +20,6 @@ AC_CHECK_HEADERS([stdlib.h])
 
 # Checks for library functions.
 
+AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
