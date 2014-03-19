@@ -14,3 +14,6 @@ main.o
 config.guess
 config.h.in~
 config.sub
+.libs/
+hello.lo
+libhello.la
