@@ -82,7 +82,7 @@ World
 ```
 $ file $HOME/local/lib/libhello.a
 /Users/zunda/local/lib/libhello.a: current ar archive random library
-$ $ strings $HOME/local/lib/libhello.a | grep ^/
+$ strings $HOME/local/lib/libhello.a | grep ^/
 /Users/zunda/local/src/hellowrold
 ```
 
