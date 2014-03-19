@@ -11,3 +11,6 @@ stamp-h1
 hello
 hello.o
 main.o
+config.guess
+config.h.in~
+config.sub
