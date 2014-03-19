@@ -60,3 +60,33 @@ libhello.0.dylib`greet:
    0x100003f24:  subq   $0x20, %rsp
    0x100003f28:  movl   $0x0, %eax
 ```
+
+### ソースコードのパス
+コンパイラオプションに`-g`を含めてビルドしたライブラリや実行ファイルが
+`strip`されていない場合には、ソースコードのパスを得ることができそうです。
+
+実行ファイルだと、
+
+```
+$ file $HOME/local/bin/hello
+/Users/zunda/local/bin/hello: Mach-O 64-bit executable x86_64
+$ strings $HOME/local/bin/hello 
+World
+```
+
+あ、あれ?
+`hexdump -C $HOME/local/bin/hello`すると確かにソースコードのディレクトリが見えるのですが。
+
+共有ライブラリだと、
+
+```
+$ file $HOME/local/lib/libhello.a
+/Users/zunda/local/lib/libhello.a: current ar archive random library
+$ $ strings $HOME/local/lib/libhello.a | grep ^/
+/Users/zunda/local/src/hellowrold
+```
+
+こちらは期待通り得られました。
+
+### 参考文献
+* [GDBでデバッグ時にソースコードの場所を指定する | Urban Theory](http://blog.urban-theory.net/2013/05/25/specifing_source_directories_with_gdb)
