@@ -15,3 +15,4 @@ config.h.in~
 .libs/
 hello.lo
 libhello.la
+libtool
