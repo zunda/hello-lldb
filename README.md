@@ -70,23 +70,31 @@ libhello.0.dylib`greet:
 ```
 $ file $HOME/local/bin/hello
 /Users/zunda/local/bin/hello: Mach-O 64-bit executable x86_64
-$ strings $HOME/local/bin/hello 
-World
+$ strings - $HOME/local/bin/hello  | grep ^/
+/usr/lib/dyld
+/Users/zunda/local/lib/libhello.0.dylib
+/usr/lib/libSystem.B.dylib
+/Users/zunda/local/src/hello-lldb/
+/Users/zunda/local/src/hello-lldb/main.o
 ```
-
-あ、あれ?
-`hexdump -C $HOME/local/bin/hello`すると確かにソースコードのディレクトリが見えるのですが。
 
 共有ライブラリだと、
 
 ```
 $ file $HOME/local/lib/libhello.a
 /Users/zunda/local/lib/libhello.a: current ar archive random library
-$ strings $HOME/local/lib/libhello.a | grep ^/
+$ strings - $HOME/local/lib/libhello.a | grep ^/
 /Users/zunda/local/src/hellowrold
 ```
 
-こちらは期待通り得られました。
+ここで`string`に`-`オプションを付けない場合には、
+オブジェクトファイルの`(__TEXT,__text)`セクションの内容は表示されず(よくわかっていない)、
+実行ファイルからソースコードのパスを得ることができなくなってしまうようです。
+
+```
+$ strings $HOME/local/bin/hello
+World
+```
 
 ### 参考文献
 * [GDBでデバッグ時にソースコードの場所を指定する | Urban Theory](http://blog.urban-theory.net/2013/05/25/specifing_source_directories_with_gdb)
