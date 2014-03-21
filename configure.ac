@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_INIT([hello-world], [0.0], [zunda at gmail.com])
-AM_INIT_AUTOMAKE([1.14 foreign])
+AM_INIT_AUTOMAKE([1.13 foreign])
 AC_CONFIG_SRCDIR([hello.c])
 AC_CONFIG_HEADERS([config.h])
 AM_PROG_LIBTOOL
